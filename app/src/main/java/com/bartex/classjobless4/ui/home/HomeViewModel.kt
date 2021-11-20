@@ -10,6 +10,8 @@ class HomeViewModel(
         private var lessonsRepo: ILessons = LessonsRepo(app = App.instance),
 ) : ViewModel() {
 
+    private var isTimerOn = false
+
    fun onStartTimer(){
        timeRepo.onStart()
    }
@@ -24,5 +26,11 @@ class HomeViewModel(
 
     fun getHomeworks():List<Homework>{
         return lessonsRepo.getHomeworks()
+    }
+
+    fun getIsTime():Boolean = isTimerOn
+
+    fun setIsTime(isTime:Boolean){
+        isTimerOn = isTime
     }
 }

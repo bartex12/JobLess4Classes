@@ -8,9 +8,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bartex.classjobless4.R
+import com.bartex.classjobless4.entity.Constsnts
+import com.bartex.classjobless4.entity.Lessons
 import com.bartex.classjobless4.ui.adapters.ClassesRVAdapter
 import com.bartex.classjobless4.ui.adapters.HomeworksRVAdapter
 import java.util.*
@@ -27,9 +33,12 @@ private lateinit var  adapterHw:HomeworksRVAdapter
 private lateinit var  tvLessNumber:TextView
 
 
+
     companion object{
         const val TAG = "33333"
     }
+
+    private lateinit var navController: NavController
 
     private val homeViewModel by lazy {
         ViewModelProvider(requireActivity())[HomeViewModel::class.java]
@@ -46,12 +55,18 @@ private lateinit var  tvLessNumber:TextView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        navController = Navigation.findNavController(view)
+
         initViews(view)
         initAdapters()
 
-        //устанавливаем слушатель изменения времени
-        homeViewModel.setOnTimeListener(this)
-        homeViewModel.onStartTimer()
+        if (!homeViewModel.getIsTime() ){
+            //меняем флаг
+            homeViewModel.setIsTime(true)
+            //устанавливаем слушатель изменения времени
+            homeViewModel.setOnTimeListener(this)
+            homeViewModel.onStartTimer()
+        }
 
       val listLessons =   homeViewModel.getLessons()
         adapterLess.listData = listLessons
@@ -64,13 +79,31 @@ private lateinit var  tvLessNumber:TextView
     private fun initAdapters() {
         rvLessons.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false )
-        adapterLess = ClassesRVAdapter()
+        adapterLess = ClassesRVAdapter(getOnClickListener(), getOnVideoListener())
         rvLessons.adapter = adapterLess
 
         rvHomeworks.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false )
         adapterHw = HomeworksRVAdapter()
         rvHomeworks.adapter = adapterHw
+    }
+
+    private fun getOnVideoListener(): ClassesRVAdapter.OnVideoClickListener {
+        return object : ClassesRVAdapter.OnVideoClickListener{
+            override fun onVideoClick(lesson: Lessons) {
+                val bundle = Bundle()
+                    bundle. putParcelable(Constsnts.CLASSES, lesson)
+                    navController.navigate(R.id.navigation_lessons, bundle)
+            }
+        }
+    }
+
+    private fun getOnClickListener(): ClassesRVAdapter.OnItemClickListener {
+        return object : ClassesRVAdapter.OnItemClickListener{
+            override fun onItemClick() {
+                navController.navigate(R.id.navigation_lessons)
+            }
+        }
     }
 
     private fun initViews(view:View){

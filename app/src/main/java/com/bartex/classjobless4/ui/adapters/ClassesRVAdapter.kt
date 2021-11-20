@@ -16,13 +16,25 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
 
 
-class ClassesRVAdapter:RecyclerView.Adapter<ClassesRVAdapter.ViewHolder>() {
+class ClassesRVAdapter(
+        private val onItemClickListener: OnItemClickListener,
+        private val onVideoClickListener: OnVideoClickListener,
+
+        )
+    :RecyclerView.Adapter<ClassesRVAdapter.ViewHolder>() {
 
     lateinit var  context: Context
     var listData: List<Lessons> = listOf()
     set(value) {
         field = value
         notifyDataSetChanged()
+    }
+
+    interface OnItemClickListener{
+        fun onItemClick()
+    }
+    interface OnVideoClickListener{
+        fun onVideoClick(lesson:Lessons)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClassesRVAdapter.ViewHolder {
@@ -45,6 +57,8 @@ class ClassesRVAdapter:RecyclerView.Adapter<ClassesRVAdapter.ViewHolder>() {
         private val date:TextView = view.findViewById(R.id.tvTimeLesson)
         private val imageRound:ImageView = view.findViewById(R.id.iv_round)
         private val groupVideo:Group = view.findViewById(R.id.group_video)
+        private val video:View = view.findViewById(R.id.ib_send)
+
 
         fun bind(lessons: Lessons){
             lesson.text = lessons.name
@@ -60,6 +74,14 @@ class ClassesRVAdapter:RecyclerView.Adapter<ClassesRVAdapter.ViewHolder>() {
                     .placeholder(R.drawable.post)
                     .error(R.drawable.mistake)
                     .into(imageRound)
+
+            imageRound.setOnClickListener {
+                onItemClickListener.onItemClick()
+            }
+
+            video.setOnClickListener {
+                onVideoClickListener.onVideoClick(lessons)
+            }
         }
 
     }
