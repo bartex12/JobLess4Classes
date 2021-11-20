@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ClassJobLess4</string>
+    <string name="title_home">Домой</string>
+    <string name="title_lessons">Уроки</string>
+    <string name="title_homeworks">Домашки</string>
+    <string name="content_description_end_icon">Часы</string>
+    <string name="lessNow">6 уроков сегодня</string>
+    <string name="lessNow2">%s уроков сегодня</string>
+    <string name="hw_lit">Прочитать Войну и мир и забыть как страшный сон</string>
+    <string name="hw_geo">Натянуть сову на глобус</string>
+    <string name="hw_fisics">Решить уравнение Шредингера для частицы в потенциальной яме</string>
+    <string name="hw_history">Выяснить, кто убил Кеннеди</string>
+    <string name="hw_alg">"Выучить две тысячи знаков числа пи "</string>
+    <string name="hw_phisical">Выбежать на стометровке из 10 секунд </string>
+    <string name="left_days">осталось дней: %s</string>
+    <string name="dms">До конца света осталось</string>
+    <string name="hour_left">Часов</string>
+    <string name="minut_left">Минут</string>
+    <string name="sec_left">Секунд</string>
+    <string name="_09">09</string>
+    <string name="divider">:</string>
+    <string name="_23">23</string>
+    <string name="_59">59</string>
+    <string name="lesss">Уроки</string>
+    <string name="hwork">Домашнее задание</string>
+    <string name="date">8:00–8:45</string>
+    <string name="his">История</string>
+    <string name="video">Видео</string>
+    <string name="dayleft">осталось дней: 2</string>
+    <string name="hw">Домашнее задание</string>
+    <string name="title_liked">Избранное</string>
+</resources>

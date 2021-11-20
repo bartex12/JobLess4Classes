@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:background="@color/colorPrimaryDarkBlack"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.home.HomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_margin="8dp"
+        card_view:cardBackgroundColor="@color/teal_200"
+        card_view:cardCornerRadius="30dp"
+        android:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/grad1">
+
+            <TextView
+                android:id="@+id/tv_last"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dms"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/days"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="268dp" />
+
+            <TextView
+                android:id="@+id/tv_days_last"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hour_left"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/days"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/days"
+                app:layout_constraintEnd_toEndOf="@id/days"
+                tools:layout_editor_absoluteX="163dp"
+                tools:layout_editor_absoluteY="365dp" />
+
+            <TextView
+                android:id="@+id/tv_hour_last"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minut_left"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/hours"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/hours"
+                app:layout_constraintEnd_toEndOf="@id/hours"/>
+
+            <TextView
+                android:id="@+id/tv_hour_minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_left"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/minutes"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/minutes"
+                app:layout_constraintEnd_toEndOf="@id/minutes"/>
+
+    <TextView
+        android:id="@+id/days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_09"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dots1"/>
+    <TextView
+        android:id="@+id/dots1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/divider"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/days"
+        app:layout_constraintEnd_toStartOf="@+id/hours"
+        app:layout_constraintStart_toEndOf="@+id/days"
+        app:layout_constraintTop_toTopOf="@+id/days" />
+
+    <TextView
+        android:id="@+id/hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_23"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dots1"
+        app:layout_constraintStart_toEndOf="@+id/dots1"
+        app:layout_constraintEnd_toStartOf="@+id/dots2"
+        app:layout_constraintTop_toTopOf="@+id/dots1" />
+
+    <TextView
+        android:id="@+id/dots2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/divider"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/hours"
+        app:layout_constraintStart_toEndOf="@+id/hours"
+        app:layout_constraintEnd_toStartOf="@+id/minutes"
+        app:layout_constraintTop_toTopOf="@+id/hours" />
+
+    <TextView
+        android:id="@+id/minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_59"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dots2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dots2"
+        app:layout_constraintTop_toTopOf="@+id/dots2"
+        android:layout_marginEnd="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvLess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lesss"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/cv"
+        app:layout_constraintTop_toBottomOf="@+id/cv" />
+
+    <TextView
+        android:id="@+id/tvLessNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lessNow"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="281dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_Lessons"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:background="@color/colorPrimaryDarkBlack"
+        android:clipToPadding="false"
+        app:layout_constraintEnd_toEndOf="@+id/cv"
+        app:layout_constraintStart_toStartOf="@+id/cv"
+        app:layout_constraintTop_toBottomOf="@+id/tvLess"
+        tools:context=".view.main.MainActivity" />
+
+    <TextView
+        android:id="@+id/tv_homework"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd ="16dp"
+        android:text="@string/hwork"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/cv"
+        app:layout_constraintTop_toBottomOf="@+id/rv_Lessons" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_homework"
+        android:layout_width="0dp"
+        android:layout_height="330dp"
+        android:background="@color/colorPrimaryDarkBlack"
+        android:clipToPadding="false"
+        app:layout_constraintEnd_toEndOf="@+id/cv"
+        app:layout_constraintStart_toStartOf="@+id/cv"
+        app:layout_constraintTop_toBottomOf="@+id/tv_homework"
+        tools:context=".view.main.MainActivity" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
