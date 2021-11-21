@@ -6,7 +6,7 @@ import com.bartex.classjobless4.entity.Homework
 import com.bartex.classjobless4.entity.Lessons
 
 class HomeViewModel(
-        private var timeRepo: IStopwatch = TimerExam(),
+        private var timeRepo: ITimerExam = MyTimerExam(App.instance),
         private var lessonsRepo: ILessons = LessonsRepo(app = App.instance),
 ) : ViewModel() {
 
@@ -16,7 +16,7 @@ class HomeViewModel(
        timeRepo.onStart()
    }
 
-    fun setOnTimeListener(listener: TimerExam.OnTimeListener){
+    fun setOnTimeListener(listener: MyTimerExam.OnTimeListener){
         timeRepo.setOnTimeListener(listener)
     }
 

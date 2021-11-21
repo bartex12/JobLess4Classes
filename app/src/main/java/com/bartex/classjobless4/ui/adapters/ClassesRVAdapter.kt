@@ -58,6 +58,9 @@ class ClassesRVAdapter(
         private val imageRound:ImageView = view.findViewById(R.id.iv_round)
         private val groupVideo:Group = view.findViewById(R.id.group_video)
         private val video:View = view.findViewById(R.id.ib_send)
+        private val groupClasses:View = view.findViewById(R.id.group_classes)
+        private val clClasses:View = view.findViewById(R.id.cl_slasses)
+
 
 
         fun bind(lessons: Lessons){
@@ -75,12 +78,16 @@ class ClassesRVAdapter(
                     .error(R.drawable.mistake)
                     .into(imageRound)
 
-            imageRound.setOnClickListener {
-                onItemClickListener.onItemClick()
-            }
+//            imageRound.setOnClickListener {
+//                onItemClickListener.onItemClick()
+//            }
 
             video.setOnClickListener {
                 onVideoClickListener.onVideoClick(lessons)
+            }
+
+            clClasses.setOnClickListener {
+                onItemClickListener.onItemClick()
             }
         }
 

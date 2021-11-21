@@ -13,17 +13,21 @@
 
     <fragment
         android:id="@+id/navigation_lessons"
-        android:name="com.bartex.classjobless4.ui.dashboard.DashboardFragment"
+        android:name="com.bartex.classjobless4.ui.classes.ClassesFragment"
         android:label="@string/title_lessons"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_classes" />
 
     <fragment
         android:id="@+id/navigation_homeworks"
-        android:name="com.bartex.classjobless4.ui.notifications.NotificationsFragment"
+        android:name="com.bartex.classjobless4.ui.homeworks.HomeworksFragment"
         android:label="@string/title_homeworks"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_homeworks" />
     <fragment
         android:id="@+id/navigation_liked"
         android:name="com.bartex.classjobless4.ui.liked.LikedFragment"
         android:label="LikedFragment" />
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.bartex.classjobless4.ui.video.VideoFragment"
+        android:label="VideoFragment" />
 </navigation>

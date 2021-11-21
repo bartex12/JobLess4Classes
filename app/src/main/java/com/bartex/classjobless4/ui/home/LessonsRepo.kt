@@ -39,7 +39,7 @@ class LessonsRepo(val app:Application):ILessons {
     override fun getHomeworks(): List<Homework> {
         return listOf(
             Homework(
-                name = "Физика", daysLeft = 2,
+                name = "Физика", daysLeft = 1,
                 homework = app.resources.getString(R.string.hw_fisics), icon = R.drawable.physics
             ),
             Homework(

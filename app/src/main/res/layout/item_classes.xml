@@ -108,10 +108,19 @@
         android:id="@+id/group_video"
         android:visibility="visible"
         app:constraint_referenced_ids=
-            "iv_round,tvLesson, tvTimeLesson, iv_time"
+            "ib_send, tv_video, iv_video"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        tools:visibility="visible"/>
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_classes"
+        android:visibility="visible"
+        app:constraint_referenced_ids=
+            "iv_round, tvLesson, tvTimeLesson,iv_time "
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView >

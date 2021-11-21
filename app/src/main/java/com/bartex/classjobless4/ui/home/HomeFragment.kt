@@ -1,5 +1,6 @@
 package com.bartex.classjobless4.ui.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bartex.classjobless4.R
@@ -21,7 +20,7 @@ import com.bartex.classjobless4.ui.adapters.ClassesRVAdapter
 import com.bartex.classjobless4.ui.adapters.HomeworksRVAdapter
 import java.util.*
 
-class HomeFragment : Fragment(), TimerExam.OnTimeListener{
+class HomeFragment : Fragment(), MyTimerExam.OnTimeListener{
 
 private lateinit var  days:TextView
 private lateinit var  hours:TextView
@@ -31,8 +30,7 @@ private lateinit var  rvHomeworks:RecyclerView
 private lateinit var  adapterLess:ClassesRVAdapter
 private lateinit var  adapterHw:HomeworksRVAdapter
 private lateinit var  tvLessNumber:TextView
-
-
+private lateinit var  tvLast:TextView
 
     companion object{
         const val TAG = "33333"
@@ -60,30 +58,32 @@ private lateinit var  tvLessNumber:TextView
         initViews(view)
         initAdapters()
 
+        homeViewModel.setOnTimeListener(this)
+
         if (!homeViewModel.getIsTime() ){
             //меняем флаг
             homeViewModel.setIsTime(true)
-            //устанавливаем слушатель изменения времени
-            homeViewModel.setOnTimeListener(this)
             homeViewModel.onStartTimer()
         }
 
       val listLessons =   homeViewModel.getLessons()
         adapterLess.listData = listLessons
-        tvLessNumber.text = String.format(getString(R.string.lessNow2), listLessons.size )
+        tvLessNumber.text = String.format(getString(R.string.lessNow2), listLessons.size)
 
         val listHw = homeViewModel.getHomeworks()
         adapterHw.listHw = listHw
     }
 
+
+
     private fun initAdapters() {
         rvLessons.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false )
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         adapterLess = ClassesRVAdapter(getOnClickListener(), getOnVideoListener())
         rvLessons.adapter = adapterLess
 
         rvHomeworks.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false )
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         adapterHw = HomeworksRVAdapter()
         rvHomeworks.adapter = adapterHw
     }
@@ -93,7 +93,7 @@ private lateinit var  tvLessNumber:TextView
             override fun onVideoClick(lesson: Lessons) {
                 val bundle = Bundle()
                     bundle. putParcelable(Constsnts.CLASSES, lesson)
-                    navController.navigate(R.id.navigation_lessons, bundle)
+                    navController.navigate(R.id.videoFragment, bundle)
             }
         }
     }
@@ -106,13 +106,14 @@ private lateinit var  tvLessNumber:TextView
         }
     }
 
-    private fun initViews(view:View){
+    private fun initViews(view: View){
         days = view.findViewById(R.id.days)
         hours = view.findViewById(R.id.hours)
         minutes = view.findViewById(R.id.minutes)
         rvLessons = view.findViewById(R.id.rv_Lessons)
         rvHomeworks = view.findViewById(R.id.rv_homework)
         tvLessNumber = view.findViewById(R.id.tvLessNumber)
+        tvLast = view.findViewById(R.id.tv_last)
 
     }
 
@@ -121,14 +122,15 @@ private lateinit var  tvLessNumber:TextView
         val hour = (time / 3600000 % 24).toInt()
         val minut = (time / 60000 % 60).toInt()
         val second = (time / 1000 % 60).toInt()
-        //val decim = Math.round((time % 1000 / 100).toFloat())
+        val decim = Math.round((time % 1000 / 100).toFloat())
 
         days.text =String.format(Locale.getDefault(), "%02d", hour)
         hours.text =String.format(Locale.getDefault(), "%02d", minut)
-        minutes.text =String.format(Locale.getDefault(), "%02d", second  )
-
-        Log.d(TAG, "onTime   $hour $minut $second")
+        minutes.text =String.format(Locale.getDefault(), "%02d", second)
+        if (time <= 0){
+            tvLast.text = getString(R.string.exam)
+            tvLast.setTextColor(Color.RED)
+        }
     }
-
 
 }

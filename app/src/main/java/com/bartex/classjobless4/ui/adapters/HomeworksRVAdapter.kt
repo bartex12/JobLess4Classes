@@ -1,11 +1,13 @@
 package com.bartex.classjobless4.ui.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bartex.classjobless4.R
 import com.bartex.classjobless4.entity.Homework
@@ -45,11 +47,17 @@ class HomeworksRVAdapter:RecyclerView.Adapter<HomeworksRVAdapter.ViewHolder>() {
         private val daysLast: TextView = view.findViewById(R.id.tvTimeLessonHw)
         private val imageRound: ImageView = view.findViewById(R.id.iv_roundHw)
         private val hw: TextView = view.findViewById(R.id.tvHomeworkHw)
+        private val clHomework: ConstraintLayout = view.findViewById(R.id.cl_homework)
 
         fun bind(homework: Homework){
             lesson.text = homework.name
             daysLast.text = String.format(Locale.getDefault(),
                 context.resources.getString(R.string.left_days), homework.daysLeft)
+            if(homework.daysLeft<2){
+                daysLast.setTextColor(Color.YELLOW)
+            }else{
+                daysLast.setTextColor(Color.WHITE)
+            }
             hw.text = homework.homework
 
             Picasso.get()
