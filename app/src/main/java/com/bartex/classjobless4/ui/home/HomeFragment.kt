@@ -2,7 +2,6 @@ package com.bartex.classjobless4.ui.home
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bartex.classjobless4.R
 import com.bartex.classjobless4.entity.Constsnts
 import com.bartex.classjobless4.entity.Lessons
-import com.bartex.classjobless4.ui.adapters.ClassesRVAdapter
 import com.bartex.classjobless4.ui.adapters.HomeworksRVAdapter
+import com.bartex.classjobless4.ui.adapters.LessonsRVAdapter
 import java.util.*
 
 class HomeFragment : Fragment(), MyTimerExam.OnTimeListener{
@@ -27,20 +26,13 @@ private lateinit var  hours:TextView
 private lateinit var  minutes:TextView
 private lateinit var  rvLessons:RecyclerView
 private lateinit var  rvHomeworks:RecyclerView
-private lateinit var  adapterLess:ClassesRVAdapter
+private lateinit var  adapterLess:LessonsRVAdapter
 private lateinit var  adapterHw:HomeworksRVAdapter
 private lateinit var  tvLessNumber:TextView
 private lateinit var  tvLast:TextView
 
-    companion object{
-        const val TAG = "33333"
-    }
-
     private lateinit var navController: NavController
-
-    private val homeViewModel by lazy {
-        ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-    }
+    private val homeViewModel by lazy { ViewModelProvider(requireActivity())[HomeViewModel::class.java]}
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -72,14 +64,14 @@ private lateinit var  tvLast:TextView
 
         val listHw = homeViewModel.getHomeworks()
         adapterHw.listHw = listHw
+
+        requireActivity().invalidateOptionsMenu()
     }
-
-
 
     private fun initAdapters() {
         rvLessons.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-        adapterLess = ClassesRVAdapter(getOnClickListener(), getOnVideoListener())
+        adapterLess = LessonsRVAdapter(getOnClickListener(), getOnVideoListener())
         rvLessons.adapter = adapterLess
 
         rvHomeworks.layoutManager =
@@ -88,8 +80,8 @@ private lateinit var  tvLast:TextView
         rvHomeworks.adapter = adapterHw
     }
 
-    private fun getOnVideoListener(): ClassesRVAdapter.OnVideoClickListener {
-        return object : ClassesRVAdapter.OnVideoClickListener{
+    private fun getOnVideoListener(): LessonsRVAdapter.OnVideoClickListener {
+        return object : LessonsRVAdapter.OnVideoClickListener{
             override fun onVideoClick(lesson: Lessons) {
                 val bundle = Bundle()
                     bundle. putParcelable(Constsnts.CLASSES, lesson)
@@ -98,8 +90,8 @@ private lateinit var  tvLast:TextView
         }
     }
 
-    private fun getOnClickListener(): ClassesRVAdapter.OnItemClickListener {
-        return object : ClassesRVAdapter.OnItemClickListener{
+    private fun getOnClickListener(): LessonsRVAdapter.OnItemClickListener {
+        return object : LessonsRVAdapter.OnItemClickListener{
             override fun onItemClick() {
                 navController.navigate(R.id.navigation_lessons)
             }
@@ -114,15 +106,14 @@ private lateinit var  tvLast:TextView
         rvHomeworks = view.findViewById(R.id.rv_homework)
         tvLessNumber = view.findViewById(R.id.tvLessNumber)
         tvLast = view.findViewById(R.id.tv_last)
-
     }
 
     override fun onTime(time: Long) {
-        val day = (time / 86400000 % 365).toInt()
+        //val day = (time / 86400000 % 365).toInt()
         val hour = (time / 3600000 % 24).toInt()
         val minut = (time / 60000 % 60).toInt()
         val second = (time / 1000 % 60).toInt()
-        val decim = Math.round((time % 1000 / 100).toFloat())
+        //val decim = Math.round((time % 1000 / 100).toFloat())
 
         days.text =String.format(Locale.getDefault(), "%02d", hour)
         hours.text =String.format(Locale.getDefault(), "%02d", minut)

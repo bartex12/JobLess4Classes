@@ -6,11 +6,14 @@ import android.os.Parcelable
 data class Lessons(
         val name: String? = "",
         val teacher: String? = "",
-        val date: String? = "",
+        val lessTime: String? = "",
         val isVideo:Boolean = false,
         val icon:Int = 0,
-        val isBase:Boolean = true
-): Parcelable {
+        val isBase:Boolean = true,
+        val date:String? = "",
+        val additionMatter:String = ""
+
+        ): Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
@@ -23,7 +26,7 @@ data class Lessons(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeString(teacher)
-        parcel.writeString(date)
+        parcel.writeString(lessTime)
         parcel.writeByte(if (isVideo) 1 else 0)
         parcel.writeInt(icon)
         parcel.writeByte(if (isBase) 1 else 0)

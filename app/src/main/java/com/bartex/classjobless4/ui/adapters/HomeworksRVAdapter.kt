@@ -11,7 +11,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bartex.classjobless4.R
 import com.bartex.classjobless4.entity.Homework
-import com.bartex.classjobless4.entity.Lessons
 import com.squareup.picasso.Picasso
 import java.util.*
 

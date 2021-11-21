@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class VideoViewModel : ViewModel(){
     private val _text = MutableLiveData<String>().apply {
-        value = "Это фрагмент Домашки "
+        value = "Это фрагмент Видео "
     }
 
     val text: LiveData<String> = _text

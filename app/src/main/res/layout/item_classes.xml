@@ -66,8 +66,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tvTimeLesson"
         app:layout_constraintBottom_toBottomOf="@+id/tvTimeLesson"
         app:layout_constraintStart_toStartOf="@+id/tvLesson"
-        app:layout_constraintTop_toTopOf="@+id/tvTimeLesson"
-        />
+        app:layout_constraintTop_toTopOf="@+id/tvTimeLesson" />
 
     <View
         android:id="@+id/ib_send"
@@ -110,8 +109,7 @@
         app:constraint_referenced_ids=
             "ib_send, tv_video, iv_video"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        />
+        android:layout_width="wrap_content"/>
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_classes"
@@ -119,8 +117,7 @@
         app:constraint_referenced_ids=
             "iv_round, tvLesson, tvTimeLesson,iv_time "
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        />
+        android:layout_width="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView >

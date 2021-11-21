@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_lessons"
-        android:name="com.bartex.classjobless4.ui.classes.ClassesFragment"
+        android:name="com.bartex.classjobless4.ui.classes.LessonsFragment"
         android:label="@string/title_lessons"
         tools:layout="@layout/fragment_classes" />
 

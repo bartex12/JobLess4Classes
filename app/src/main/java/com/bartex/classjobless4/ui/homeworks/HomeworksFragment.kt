@@ -11,20 +11,25 @@ import com.bartex.classjobless4.R
 
 class HomeworksFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: HomeworksViewModel
+    private lateinit var homeworksViewModel: HomeworksViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
+        homeworksViewModel =
                 ViewModelProvider(this).get(HomeworksViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_homeworks, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner,  {
+        homeworksViewModel.text.observe(viewLifecycleOwner,  {
             textView.text = it
         })
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().invalidateOptionsMenu()
     }
 }
