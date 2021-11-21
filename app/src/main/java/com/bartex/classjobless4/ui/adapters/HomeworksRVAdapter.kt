@@ -41,12 +41,10 @@ class HomeworksRVAdapter:RecyclerView.Adapter<HomeworksRVAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
-
         private val lesson: TextView = view.findViewById(R.id.tvLessonHw)
         private val daysLast: TextView = view.findViewById(R.id.tvTimeLessonHw)
         private val imageRound: ImageView = view.findViewById(R.id.iv_roundHw)
         private val hw: TextView = view.findViewById(R.id.tvHomeworkHw)
-        private val clHomework: ConstraintLayout = view.findViewById(R.id.cl_homework)
 
         fun bind(homework: Homework){
             lesson.text = homework.name
@@ -58,13 +56,11 @@ class HomeworksRVAdapter:RecyclerView.Adapter<HomeworksRVAdapter.ViewHolder>() {
                 daysLast.setTextColor(Color.WHITE)
             }
             hw.text = homework.homework
-
             Picasso.get()
                 .load(homework.icon)
                 .placeholder(R.drawable.post)
                 .error(R.drawable.mistake)
                 .into(imageRound)
         }
-
     }
 }

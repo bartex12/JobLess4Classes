@@ -62,7 +62,6 @@ class LessonsRVAdapterType(
         private val imageRound: ImageView = view.findViewById(R.id.iv_round_type)
         private val groupVideo: Group = view.findViewById(R.id.group_video_type)
         private val video:View = view.findViewById(R.id.ib_send_type)
-        //private val clClasses:View = view.findViewById(R.id.cl_slasses_type)
 
         override fun bind(lesson:Lessons){
             time.text =lesson.lessTime
@@ -106,6 +105,5 @@ class LessonsRVAdapterType(
                     .error(R.drawable.mistake)
                     .into(imageRound)
         }
-
     }
 }
