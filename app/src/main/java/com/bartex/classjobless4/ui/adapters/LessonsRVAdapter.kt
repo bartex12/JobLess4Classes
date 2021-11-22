@@ -8,12 +8,14 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.Group
 import androidx.recyclerview.widget.RecyclerView
 import com.bartex.classjobless4.R
-import com.bartex.classjobless4.entity.Constsnts
+import com.bartex.classjobless4.entity.Constants
 import com.bartex.classjobless4.entity.Lessons
 import com.squareup.picasso.Picasso
 
-class LessonsRVAdapterType(
-        private val onVideoClickListener: OnVideoClickListener
+class LessonsRVAdapter(
+        private val onItemClickListener: OnItemClickListener,
+        private val onVideoClickListener: OnVideoClickListener,
+        private val isHomeFragment: Boolean
 ):RecyclerView.Adapter<BaseViewHolder>() {
 
     var listData:List<Lessons> = listOf()
@@ -26,26 +28,41 @@ class LessonsRVAdapterType(
         fun onVideoClick(lesson:Lessons)
     }
 
+    interface OnItemClickListener{
+        fun onItemClick()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return when(viewType){
-            Constsnts.TYPE_BASE -> {
-                MainViewHolder(inflater.inflate(R.layout.item_lessons_base, parent, false))
-            }
-            Constsnts.TYPE_ADDITIONAL ->{
-                AdditionalViewHolder(inflater.inflate(R.layout.item_lessons_additional, parent, false))
-            }
-            else -> {
-                MainViewHolder(inflater.inflate(R.layout.item_lessons_base, parent, false))
+        return if(isHomeFragment){
+            HomeViewHolder(inflater.inflate(R.layout.item_lessons_home, parent, false))
+        }else{
+            when(viewType){
+                Constants.TYPE_BASE -> {
+                    MainViewHolder(inflater.inflate(R.layout.item_lessons_base, parent, false))
+                }
+                Constants.TYPE_ADDITIONAL ->{
+                    AdditionalViewHolder(inflater.inflate(R.layout.item_lessons_additional, parent, false))
+                }
+                Constants.TYPE_HOME_FRAG ->{
+                    HomeViewHolder(inflater.inflate(R.layout.item_lessons_home, parent, false))
+                }
+                else -> {
+                    MainViewHolder(inflater.inflate(R.layout.item_lessons_base, parent, false))
+                }
             }
         }
     }
 
     //здесь описываем как различаем типы
     override fun getItemViewType(position: Int): Int {
-        return when ( listData[position].isBase) {
-            true -> Constsnts.TYPE_BASE
-            else -> Constsnts.TYPE_ADDITIONAL
+        return if(isHomeFragment){
+            Constants.TYPE_HOME_FRAG
+        }else{
+            when ( listData[position].isBase) {
+                true -> Constants.TYPE_BASE
+                else -> Constants.TYPE_ADDITIONAL
+            }
         }
     }
 
@@ -86,7 +103,6 @@ class LessonsRVAdapterType(
     }
 
     inner class AdditionalViewHolder(view: View) :BaseViewHolder(view){
-
         private val time: TextView = view.findViewById(R.id.tvTimeType_add)
         private val name: TextView = view.findViewById(R.id.tvLessonHw_add)
         private val teacher: TextView = view.findViewById(R.id.tv_teacher_add)
@@ -104,6 +120,38 @@ class LessonsRVAdapterType(
                     .placeholder(R.drawable.post)
                     .error(R.drawable.mistake)
                     .into(imageRound)
+        }
+    }
+
+    inner class HomeViewHolder(view: View) :BaseViewHolder(view){
+        private val lesson:TextView = view.findViewById(R.id.tvLesson)
+        private val date:TextView = view.findViewById(R.id.tvTimeLesson)
+        private val imageRound:ImageView = view.findViewById(R.id.iv_round)
+        private val groupVideo:Group = view.findViewById(R.id.group_video)
+        private val video:View = view.findViewById(R.id.ib_send)
+        private val clClasses:View = view.findViewById(R.id.cl_slasses)
+
+        override fun bind(lesson: Lessons) {
+            this.lesson.text = lesson.name
+            date.text = lesson.lessTime
+            if(lesson.isVideo){
+                groupVideo.visibility = View.VISIBLE
+            }else{
+                groupVideo.visibility = View.INVISIBLE
+            }
+            Picasso.get()
+                    .load(lesson.icon)
+                    .placeholder(R.drawable.post)
+                    .error(R.drawable.mistake)
+                    .into(imageRound)
+
+            video.setOnClickListener {
+                onVideoClickListener.onVideoClick(lesson)
+            }
+
+            clClasses.setOnClickListener {
+                onItemClickListener.onItemClick()
+            }
         }
     }
 }

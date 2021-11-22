@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bartex.classjobless4.R
-import com.bartex.classjobless4.entity.Constsnts
+import com.bartex.classjobless4.entity.Constants
 import com.bartex.classjobless4.entity.Lessons
 
 class VideoFragment: Fragment()  {
@@ -34,7 +34,7 @@ class VideoFragment: Fragment()  {
 
         initView(view )
 
-        val lessons:Lessons? = arguments?.getParcelable(Constsnts.CLASSES)
+        val lessons:Lessons? = arguments?.getParcelable(Constants.CLASSES)
         lessons?.let{
             it.name?.let { it1 -> videoViewModel.setText(it1+ getString(R.string.videoLess) ) }
         }
@@ -48,13 +48,13 @@ class VideoFragment: Fragment()  {
             less.name?. let{name->
                 when(name){
                    getString(R.string.fizika) -> {
-                       webView.loadUrl(Constsnts.URL_FIZ)
+                       webView.loadUrl(Constants.URL_FIZ)
                    }
                     getString(R.string.litra) -> {
-                        webView.loadUrl(Constsnts.URL_LITRA)
+                        webView.loadUrl(Constants.URL_LITRA)
                     }
                     else -> {
-                        webView.loadUrl(Constsnts.URL_NONE)
+                        webView.loadUrl(Constants.URL_NONE)
                     }
                 }
             }

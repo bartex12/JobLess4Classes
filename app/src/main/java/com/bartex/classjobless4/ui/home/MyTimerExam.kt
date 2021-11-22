@@ -2,13 +2,13 @@ package com.bartex.classjobless4.ui.home
 
 import android.app.Application
 import android.os.CountDownTimer
-import com.bartex.classjobless4.entity.Constsnts
+import com.bartex.classjobless4.entity.Constants
 
 class MyTimerExam(val app:Application):ITimerExam {
 
     var listener: OnTimeListener? = null
-    var totalTime = Constsnts.START_TIME
-    var kvant = Constsnts.KVANT
+    var totalTime = Constants.START_TIME
+    var kvant = Constants.KVANT
 
     interface OnTimeListener{
         fun onTime(time: Long)

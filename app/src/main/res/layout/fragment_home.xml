@@ -18,7 +18,7 @@
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/margin8"
         card_view:cardBackgroundColor="@color/teal_200"
         card_view:cardCornerRadius="30dp"
         android:elevation="0dp"

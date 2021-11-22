@@ -12,9 +12,9 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bartex.classjobless4.R
-import com.bartex.classjobless4.entity.Constsnts
+import com.bartex.classjobless4.entity.Constants
 import com.bartex.classjobless4.entity.Lessons
-import com.bartex.classjobless4.ui.adapters.LessonsRVAdapterType
+import com.bartex.classjobless4.ui.adapters.LessonsRVAdapter
 
 class LessonsFragment : Fragment() {
 
@@ -25,7 +25,7 @@ class LessonsFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var lessonsViewModel: LessonsViewModel
     private lateinit var  rvLessons: RecyclerView
-    private lateinit var  adapterLess:LessonsRVAdapterType
+    private lateinit var  adapterLess:LessonsRVAdapter
     private lateinit var  tvDateType:TextView
     //private val model by lazy{ ViewModelProvider(this)[SharedViewModel::class.java] }
 
@@ -60,16 +60,24 @@ class LessonsFragment : Fragment() {
 
     private fun initAdapters() {
         rvLessons.layoutManager = LinearLayoutManager(requireActivity())
-        adapterLess = LessonsRVAdapterType(getOnVideoListener(   ))
+        adapterLess = LessonsRVAdapter(getOnClickListener(),getOnVideoListener(), false)
         rvLessons.adapter = adapterLess
     }
 
-    private fun getOnVideoListener(): LessonsRVAdapterType.OnVideoClickListener {
-        return object : LessonsRVAdapterType.OnVideoClickListener{
+    private fun getOnVideoListener(): LessonsRVAdapter.OnVideoClickListener {
+        return object : LessonsRVAdapter.OnVideoClickListener{
             override fun onVideoClick(lesson: Lessons) {
                 val bundle = Bundle()
-                bundle. putParcelable(Constsnts.CLASSES, lesson)
+                bundle. putParcelable(Constants.CLASSES, lesson)
                 navController.navigate(R.id.videoFragment, bundle)
+            }
+        }
+    }
+
+    private fun getOnClickListener(): LessonsRVAdapter.OnItemClickListener {
+        return object : LessonsRVAdapter.OnItemClickListener{
+            override fun onItemClick() {
+               //ничего - так как в этом фрагменте не используется
             }
         }
     }

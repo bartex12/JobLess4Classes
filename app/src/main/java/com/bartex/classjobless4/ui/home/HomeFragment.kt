@@ -13,10 +13,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bartex.classjobless4.R
-import com.bartex.classjobless4.entity.Constsnts
+import com.bartex.classjobless4.entity.Constants
 import com.bartex.classjobless4.entity.Lessons
 import com.bartex.classjobless4.ui.adapters.HomeworksRVAdapter
-import com.bartex.classjobless4.ui.adapters.LessonsRVAdapterHome
+import com.bartex.classjobless4.ui.adapters.LessonsRVAdapter
 import java.util.*
 
 class HomeFragment : Fragment(), MyTimerExam.OnTimeListener{
@@ -26,7 +26,7 @@ private lateinit var  hours:TextView
 private lateinit var  minutes:TextView
 private lateinit var  rvLessons:RecyclerView
 private lateinit var  rvHomeworks:RecyclerView
-private lateinit var  adapterHomeLess:LessonsRVAdapterHome
+private lateinit var  adapterHomeLess:LessonsRVAdapter
 private lateinit var  adapterHw:HomeworksRVAdapter
 private lateinit var  tvLessNumber:TextView
 private lateinit var  tvLast:TextView
@@ -71,7 +71,7 @@ private lateinit var  tvLast:TextView
     private fun initAdapters() {
         rvLessons.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-        adapterHomeLess = LessonsRVAdapterHome(getOnClickListener(), getOnVideoListener())
+        adapterHomeLess = LessonsRVAdapter(getOnClickListener(), getOnVideoListener(), true)
         rvLessons.adapter = adapterHomeLess
 
         rvHomeworks.layoutManager =
@@ -80,18 +80,18 @@ private lateinit var  tvLast:TextView
         rvHomeworks.adapter = adapterHw
     }
 
-    private fun getOnVideoListener(): LessonsRVAdapterHome.OnVideoClickListener {
-        return object : LessonsRVAdapterHome.OnVideoClickListener{
+    private fun getOnVideoListener(): LessonsRVAdapter.OnVideoClickListener {
+        return object : LessonsRVAdapter.OnVideoClickListener{
             override fun onVideoClick(lesson: Lessons) {
                 val bundle = Bundle()
-                    bundle. putParcelable(Constsnts.CLASSES, lesson)
+                    bundle. putParcelable(Constants.CLASSES, lesson)
                     navController.navigate(R.id.videoFragment, bundle)
             }
         }
     }
 
-    private fun getOnClickListener(): LessonsRVAdapterHome.OnItemClickListener {
-        return object : LessonsRVAdapterHome.OnItemClickListener{
+    private fun getOnClickListener(): LessonsRVAdapter.OnItemClickListener {
+        return object : LessonsRVAdapter.OnItemClickListener{
             override fun onItemClick() {
                 navController.navigate(R.id.navigation_lessons)
             }
