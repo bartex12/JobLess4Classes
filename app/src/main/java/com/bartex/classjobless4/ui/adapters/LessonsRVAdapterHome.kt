@@ -11,11 +11,11 @@ import com.bartex.classjobless4.R
 import com.bartex.classjobless4.entity.Lessons
 import com.squareup.picasso.Picasso
 
-class LessonsRVAdapter(
+class LessonsRVAdapterHome(
         private val onItemClickListener: OnItemClickListener,
         private val onVideoClickListener: OnVideoClickListener,
         )
-    :RecyclerView.Adapter<LessonsRVAdapter.ViewHolder>() {
+    :RecyclerView.Adapter<LessonsRVAdapterHome.ViewHolder>() {
 
     var listData: List<Lessons> = listOf()
     set(value) {
@@ -30,12 +30,12 @@ class LessonsRVAdapter(
         fun onVideoClick(lesson:Lessons)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonsRVAdapter.ViewHolder {
-        val view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_classes, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonsRVAdapterHome.ViewHolder {
+        val view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_lessons_home, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: LessonsRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LessonsRVAdapterHome.ViewHolder, position: Int) {
         holder.bind(listData[position])
     }
 

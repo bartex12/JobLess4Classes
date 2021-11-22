@@ -30,13 +30,13 @@ class LessonsRVAdapterType(
         val inflater = LayoutInflater.from(parent.context)
         return when(viewType){
             Constsnts.TYPE_BASE -> {
-                MainViewHolder(inflater.inflate(R.layout.item_classes_main, parent, false))
+                MainViewHolder(inflater.inflate(R.layout.item_lessons_base, parent, false))
             }
             Constsnts.TYPE_ADDITIONAL ->{
-                AdditionalViewHolder(inflater.inflate(R.layout.item_classes_additional, parent, false))
+                AdditionalViewHolder(inflater.inflate(R.layout.item_lessons_additional, parent, false))
             }
             else -> {
-                MainViewHolder(inflater.inflate(R.layout.item_classes_main, parent, false))
+                MainViewHolder(inflater.inflate(R.layout.item_lessons_base, parent, false))
             }
         }
     }
