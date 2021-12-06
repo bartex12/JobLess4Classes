@@ -4,17 +4,15 @@ import android.app.Application
 import com.bartex.classjobless4.R
 import com.bartex.classjobless4.entity.Homework
 import com.bartex.classjobless4.entity.Lessons
+import com.bartex.classjobless4.extentions.format
 import java.lang.String
 import java.util.*
 
 class LessonsRepo(val app: Application):ILessons {
 
     override fun getLessons(): List<Lessons> {
-        val calendar = GregorianCalendar()
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val month = calendar.get(Calendar.MONTH)
-        val year = calendar.get(Calendar.YEAR)
-        val date = String.format(Locale.getDefault(),"%02d.%02d.%04d",day, month + 1, year)
+        val date2:Date = GregorianCalendar().time
+        val date = date2.format("dd.MM.yyyy") //расширение для класса Date
 
         return listOf(
                 Lessons(
